@@ -1,6 +1,36 @@
 # project
 
-A React component library and TypeScript types for a mountain bike auction site.
+A mountain bike auction site built with React, TypeScript, and React Router. Dark gray and fluorescent pink aesthetic.
+
+## Pages
+
+### Home (`/`)
+
+Hero section with a headline and CTA, category filter chips, and a live auction grid. Each card shows the bike image, current bid, and a countdown timer.
+
+### Auction Detail (`/auction/:id`)
+
+- Large hero image with a scrollable thumbnail strip
+- Sticky bidding sidebar — current bid, time remaining, bid input, Place Bid button, and Buy It Now
+- Seller description with a full spec grid
+- Host's Hot Take — a staff editorial callout
+- Live comments section with a post form
+
+### Sell a Bike (`/sell`)
+
+A 4-step multi-step form for sellers:
+1. **Bike Info** — brand, model, year, frame material, category, suspension, wheel size
+2. **Components** — fork, shock, drivetrain, weight
+3. **Condition & Photos** — condition chips, description, photo upload
+4. **Pricing** — starting bid, reserve price, buy it now, fee summary
+
+### Profile (`/profile`)
+
+Profile header with stats, and a tabbed view of:
+- **Won** — auctions the user has won with final prices
+- **Lost** — auctions lost with the user's bid vs. final sale price
+- **Active Bids** — live auctions with leading/outbid status
+- **Comments** — comment history across listings
 
 ## Components
 
@@ -155,6 +185,19 @@ import { Listing } from "./src/types/Listing";
 | `bids` | `Bid[]` | Array of all bids placed |
 | `auctionStartsAt` | `Date` | Auction start time |
 | `auctionEndsAt` | `Date` | Auction end time |
+
+## Theme
+
+Shared design tokens are in `src/theme.ts`:
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `colors.bg` | `#111111` | Page background |
+| `colors.surface` | `#1a1a1a` | Cards and panels |
+| `colors.border` | `#2a2a2a` | Borders and dividers |
+| `colors.pink` | `#ff2d78` | Accents, CTAs, active states |
+| `colors.textPrimary` | `#f0f0f0` | Primary text |
+| `colors.textSecondary` | `#888888` | Secondary / muted text |
 
 ## Development
 
