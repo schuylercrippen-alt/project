@@ -1,6 +1,6 @@
 # project
 
-A React component library with `Button`, `Input`, `Modal`, and `Dropdown` components.
+A React component library and TypeScript types for a mountain bike auction site.
 
 ## Components
 
@@ -94,6 +94,46 @@ import { Dropdown } from "./src/components/Dropdown";
 | `placeholder` | `string` | `"Select..."` | Text shown when no value is selected |
 | `disabled` | `boolean` | `false` | Disables the dropdown |
 | `onChange` | `(value: string) => void` | — | Called with the selected value |
+
+## Types
+
+### Listing
+
+The core type for a mountain bike auction listing, found in `src/types/Listing.ts`.
+
+```ts
+import { Listing } from "./src/types/Listing";
+```
+
+**Bike fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `brand` | `string` | Manufacturer (e.g. `"Trek"`) |
+| `model` | `string` | Model name (e.g. `"Slash 9.9"`) |
+| `year` | `number` | Model year |
+| `frameMaterial` | `"aluminum" \| "carbon" \| "steel" \| "titanium"` | Frame material |
+| `drivetrain` | `string` | Drivetrain description (e.g. `"Shimano XT 12-speed"`) |
+| `fork` | `string` | Fork model (e.g. `"Fox 36 Factory"`) |
+| `shock` | `string \| null` | Rear shock model, or `null` for hardtails/rigid |
+| `suspension` | `"hardtail" \| "full-suspension" \| "rigid"` | Suspension type |
+| `wheelSize` | `26 \| 27.5 \| 29` | Wheel diameter in inches |
+| `weightKg` | `number` | Bike weight in kilograms |
+| `category` | `"cross-country" \| "trail" \| "enduro" \| "downhill" \| "dirt-jump" \| "gravel"` | Riding discipline |
+| `condition` | `"new" \| "like-new" \| "good" \| "fair" \| "poor"` | Bike condition |
+
+**Auction fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `status` | `"draft" \| "active" \| "ended" \| "sold" \| "cancelled"` | Auction status |
+| `startingBid` | `number` | Opening bid amount |
+| `reservePrice` | `number \| null` | Minimum price to sell, or `null` for no reserve |
+| `currentBid` | `number \| null` | Latest bid amount, or `null` if no bids placed |
+| `buyItNowPrice` | `number \| null` | Optional instant purchase price |
+| `bids` | `Bid[]` | Array of all bids placed |
+| `auctionStartsAt` | `Date` | Auction start time |
+| `auctionEndsAt` | `Date` | Auction end time |
 
 ## Development
 
