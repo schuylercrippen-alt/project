@@ -95,6 +95,27 @@ import { Dropdown } from "./src/components/Dropdown";
 | `disabled` | `boolean` | `false` | Disables the dropdown |
 | `onChange` | `(value: string) => void` | — | Called with the selected value |
 
+### ListingCard
+
+Displays a mountain bike auction listing with a bike image, current bid, and live countdown timer.
+
+```tsx
+import { ListingCard } from "./src/components/ListingCard";
+
+<ListingCard listing={listing} />
+```
+
+**Props:**
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `listing` | `Listing` | The auction listing to display |
+
+- Shows the first image in `listing.images` as a full-width photo
+- Displays `currentBid` in bold, falling back to `startingBid` if no bids have been placed
+- Shows a live countdown timer for active auctions that turns red when less than an hour remains
+- Shows "Auction ended" for listings with status `"ended"` or `"sold"`
+
 ## Types
 
 ### Listing
