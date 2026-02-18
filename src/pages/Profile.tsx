@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { colors, font, radii } from "../theme";
+import { useAuth } from "../context/AuthContext";
 
 // ─── Mock data ────────────────────────────────────────────────────────────────
 
@@ -147,7 +148,10 @@ const TABS = [
 ];
 
 export function Profile() {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState(0);
+  const displayName = user?.email?.split("@")[0] ?? "rider";
+  const avatarLetter = displayName[0].toUpperCase();
 
   return (
     <div style={{ background: colors.bg, minHeight: "100vh", fontFamily: font.sans, color: colors.textPrimary }}>
@@ -161,11 +165,14 @@ export function Profile() {
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: "26px", fontWeight: 800, color: colors.pink, flexShrink: 0,
           }}>
-            S
+            {avatarLetter}
           </div>
           <div style={{ flex: 1 }}>
-            <h1 style={{ margin: "0 0 4px", fontSize: "22px", fontWeight: 800, letterSpacing: "-0.03em" }}>schuylercrippen</h1>
-            <p style={{ margin: "0 0 10px", fontSize: "13px", color: colors.textSecondary }}>Member since February 2026</p>
+            <h1 style={{ margin: "0 0 4px", fontSize: "22px", fontWeight: 800, letterSpacing: "-0.03em" }}>{displayName}</h1>
+            <p style={{ margin: "0 0 4px", fontSize: "13px", color: colors.textSecondary }}>{user?.email}</p>
+            <p style={{ margin: "0 0 10px", fontSize: "13px", color: colors.textSecondary }}>
+              Member since {new Date(user?.created_at ?? Date.now()).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+            </p>
             <div style={{ display: "flex", gap: "20px" }}>
               {[
                 ["2", "Won"],
