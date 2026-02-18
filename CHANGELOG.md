@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-02-17
+
+### Added
+- `Listing` TypeScript interface with bike details and auction-specific fields (`status`, `startingBid`, `reservePrice`, `currentBid`, `buyItNowPrice`, `bids`, `auctionStartsAt`, `auctionEndsAt`)
+- `Bid`, `BikeCondition`, and `AuctionStatus` supporting types
+
 ## [0.4.0] - 2026-02-17
 
 ### Added
