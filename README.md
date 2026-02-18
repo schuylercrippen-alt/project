@@ -1,6 +1,6 @@
 # project
 
-A React component library with `Button`, `Input`, and `Modal` components.
+A React component library with `Button`, `Input`, `Modal`, and `Dropdown` components.
 
 ## Components
 
@@ -67,6 +67,33 @@ import { Modal } from "./src/components/Modal";
 | `title` | `string` | — | Optional title displayed at the top |
 | `onClose` | `() => void` | — | Called when the close button or backdrop is clicked |
 | `children` | `ReactNode` | — | Modal content |
+
+### Dropdown
+
+A listbox component with outside-click-to-close and accessible option selection.
+
+```tsx
+import { Dropdown } from "./src/components/Dropdown";
+
+<Dropdown
+  options={[
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+  ]}
+  value={selected}
+  onChange={(value) => setSelected(value)}
+/>
+```
+
+**Props:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `{ label: string; value: string }[]` | — | List of options to display |
+| `value` | `string` | — | Currently selected value |
+| `placeholder` | `string` | `"Select..."` | Text shown when no value is selected |
+| `disabled` | `boolean` | `false` | Disables the dropdown |
+| `onChange` | `(value: string) => void` | — | Called with the selected value |
 
 ## Development
 
