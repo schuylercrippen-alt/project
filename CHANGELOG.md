@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-02-17
+
+### Added
+- `Dropdown` component with `options`, `value`, `placeholder`, `disabled`, and outside-click-to-close support
+
 ## [0.3.0] - 2026-02-17
 
 ### Added
