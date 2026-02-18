@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-02-17
+
+### Added
+- `App.tsx` with React Router v6 routing for all pages
+- `Nav` component — sticky nav with active link highlighting
+- `Home` page — hero section, category filter chips, and live auction grid
+- `AuctionDetail` page — hero image with thumbnail strip, sticky bidding sidebar with bid form, seller description, spec grid, host's Hot Take card, and live comments section
+- `SubmitBike` page — 4-step multi-step form (Bike Info → Components → Condition & Photos → Pricing) with progress indicator
+- `Profile` page — profile header with stats, tabbed view of Won / Lost / Active Bids / Comments
+- `theme.ts` — shared color palette (dark grays + fluorescent pink), radii, and font constants
+
 ## [0.6.0] - 2026-02-17
 
 ### Added
