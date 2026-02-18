@@ -1,6 +1,6 @@
 # project
 
-A mountain bike auction site built with React, TypeScript, and React Router. Dark gray and fluorescent pink aesthetic.
+A mountain bike auction site built with React, TypeScript, React Router, and Supabase. Dark gray and fluorescent pink aesthetic.
 
 ## Pages
 
@@ -15,8 +15,14 @@ Hero section with a headline and CTA, category filter chips, and a live auction 
 - Seller description with a full spec grid
 - Host's Hot Take — a staff editorial callout
 - Live comments section with a post form
+- Bids fetched from Supabase and updated in real time via `postgres_changes`
+- Place Bid calls the atomic `place_bid` Postgres function to prevent race conditions
 
-### Sell a Bike (`/sell`)
+### Auth (`/auth`)
+
+Tabbed sign in / create account page. On signup, Supabase sends a confirmation email before the account is activated. After signing in, users are redirected back to the page they came from.
+
+### Sell a Bike (`/sell`) — protected
 
 A 4-step multi-step form for sellers:
 1. **Bike Info** — brand, model, year, frame material, category, suspension, wheel size
@@ -24,7 +30,7 @@ A 4-step multi-step form for sellers:
 3. **Condition & Photos** — condition chips, description, photo upload
 4. **Pricing** — starting bid, reserve price, buy it now, fee summary
 
-### Profile (`/profile`)
+### Profile (`/profile`) — protected
 
 Profile header with stats, and a tabbed view of:
 - **Won** — auctions the user has won with final prices
@@ -185,6 +191,41 @@ import { Listing } from "./src/types/Listing";
 | `bids` | `Bid[]` | Array of all bids placed |
 | `auctionStartsAt` | `Date` | Auction start time |
 | `auctionEndsAt` | `Date` | Auction end time |
+
+## Auth
+
+Authentication is handled by Supabase Auth (email + password). Session state is available anywhere via the `useAuth()` hook:
+
+```ts
+import { useAuth } from "./src/context/AuthContext";
+
+const { user, session, loading, signOut } = useAuth();
+```
+
+`/sell` and `/profile` are protected routes — unauthenticated users are redirected to `/auth` and returned to their intended destination after signing in.
+
+## Supabase
+
+### Setup
+
+Copy `.env.example` to `.env` and fill in your project credentials:
+
+```sh
+cp .env.example .env
+```
+
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+### Schema
+
+Run `supabase/schema.sql` in the Supabase SQL Editor to create the `listings` and `bids` tables, the atomic `place_bid` function, Row Level Security policies, and enable Realtime on both tables.
+
+### Real-time bidding
+
+`AuctionDetail` subscribes to `postgres_changes` on the `listings` and `bids` tables. When any user places a bid, all connected browsers see the updated current bid instantly without polling.
 
 ## Theme
 
