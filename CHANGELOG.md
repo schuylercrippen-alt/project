@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-02-17
+
+### Added
+- `AuthContext` — global session provider using `supabase.auth.onAuthStateChange`
+- `Auth` page (`/auth`) — tabbed sign in / create account with email confirmation flow
+- `ProtectedRoute` — redirects unauthenticated users to `/auth` and back after sign in
+- Nav avatar dropdown — shows user initial, Profile link, List a bike link, and Sign out when authenticated; Sign in button when signed out
+- `Profile` page now shows real user email, username, and account creation date from Supabase Auth
+
+### Changed
+- `/sell` and `/profile` routes are now protected and require authentication
+- `AuctionDetail` wired to Supabase — fetches listing and bids from DB, subscribes to real-time `postgres_changes` for live bid updates, and calls the atomic `place_bid` RPC on submission
+
+## [0.8.0] - 2026-02-17
+
+### Added
+- Supabase client (`src/lib/supabase.ts`) initialised from environment variables
+- `supabase/schema.sql` — `listings` and `bids` tables, atomic `place_bid` Postgres function, Row Level Security policies, and Realtime enabled on both tables
+- `.env.example` for contributor onboarding
+
+### Changed
+- `.gitignore` updated to exclude `.env` and `.env.local`
+
 ## [0.7.0] - 2026-02-17
 
 ### Added
